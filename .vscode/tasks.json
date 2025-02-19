@@ -37,6 +37,12 @@
           }
         }
       }
+    },
+    {
+      "label": "serve angular",
+      "type": "shell",
+      "command": "ng serve",
+      "problemMatcher": []
     }
   ]
 }

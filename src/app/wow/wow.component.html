@@ -1,0 +1,25 @@
+<mat-toolbar>
+    <span>WoW Characters</span>
+</mat-toolbar>
+
+<div class="wow-container">
+    <div *ngIf="loading" class="loading-container">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        <p>Loading. Please wait...</p>
+    </div>
+    <ng-container *ngIf="!loading">
+        <mat-card class="wow-card" appearance="outlined" *ngFor="let character of characters" [routerLink]="['character', character.characterInfo.name]">
+            <mat-card-header>
+                <div mat-card-avatar class="wow-card-avatar" style="background-image: url('{{character.characterMedia.assets[0].value}}');"></div>
+                <mat-card-title>{{character.characterInfo.name}}</mat-card-title>
+                <mat-card-subtitle>{{character.characterInfo.character_class.name.en_US}} - {{character.characterInfo.race.name.en_US}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image class="wow-card-image" [src]="character.characterMedia.assets[2].value" [alt]="'Image of wow character' + character.characterInfo.name">
+            <mat-card-content>
+                <p>Level {{character.characterInfo.level}}</p>
+                <p>Realm: {{character.characterInfo.realm.name.en_US}}</p>
+                <p>Faction: {{character.characterInfo.faction.name.en_US}}</p>
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+</div>
